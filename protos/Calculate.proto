@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package hello;
+
+enum Operator {
+    NONE_OP = 0;
+    ADD = 1;
+    SUB = 2;
+    MUL = 3;
+}
+
+message Operand {
+    int32 op1 = 1;
+    int32 op2 = 2;
+    Operator opr = 3;
+}
+
+message Result {
+    int32 val = 1;
+}
+
+service Calculator {
+    rpc Calculate(stream Operand) returns(stream Result);
+}
